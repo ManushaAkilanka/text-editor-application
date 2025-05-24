@@ -1,81 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Modern Text Editor</title>
-  <!-- Bootstrap & Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      background: #f4f4f4;
-    }
-    .toolbar {
-      background-color: #2d2f33;
-      padding: 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .toolbar button {
-      background: none;
-      border: none;
-      color: #ccc;
-      font-size: 1.2rem;
-    }
-    .toolbar button:hover {
-      color: white;
-    }
-    #colorPicker {
-      width: 32px;
-      height: 32px;
-      border: none;
-      background: none;
-      padding: 0;
-    }
-    #textEditor {
-      width: 90%;
-      height: 70vh;
-      margin: 20px auto;
-      padding: 15px;
-      background: white;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      overflow-y: auto;
-    }
-  </style>
+    <title>Text Editor</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .toolbar {
+            margin-bottom: 10px;
+        }
+        #textEditor {
+            border: 1px solid #ccc;
+            padding: 10px;
+            min-height: 200px;
+            border-radius: 5px;
+        }
+        .toolbar .btn {
+            margin-right: 5px;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Toolbar -->
-  <div class="toolbar">
-    <button onclick="execCmd('bold')"><i class="bi bi-type-bold"></i></button>
-    <button onclick="execCmd('underline')"><i class="bi bi-type-underline"></i></button>
-    <button onclick="execCmd('italic')"><i class="bi bi-type-italic"></i></button>
-    <input type="color" id="colorPicker" onchange="execCmdWithArg('foreColor', this.value)">
-    <button onclick="execCmd('justifyLeft')"><i class="bi bi-text-left"></i></button>
-    <button onclick="execCmd('justifyCenter')"><i class="bi bi-text-center"></i></button>
-    <button onclick="execCmd('justifyRight')"><i class="bi bi-text-right"></i></button>
-    <button onclick="execCmd('justifyFull')"><i class="bi bi-justify"></i></button>
-    <button onclick="execCmd('undo')"><i class="bi bi-arrow-counterclockwise"></i></button>
-    <button onclick="execCmd('redo')"><i class="bi bi-arrow-clockwise"></i></button>
-  </div>
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <button class="btn btn-primary" id="boldBtn">Bold</button>
+        <button class="btn btn-primary" id="underlineBtn">Underline</button>
+        <button class="btn btn-primary" id="italicBtn">Italic</button>
+        <input type="color" id="colorPicker">
 
-  <!-- Editable Area -->
-  <div id="textEditor" contenteditable="true">
-    Start typing here...
-  </div>
+        <!-- Text alignment buttons -->
+        <button class="btn btn-secondary" id="alignLeft">Left</button>
+        <button class="btn btn-secondary" id="alignCenter">Center</button>
+        <button class="btn btn-secondary" id="alignRight">Right</button>
+        <button class="btn btn-secondary" id="alignJustify">Justify</button>
 
-  <!-- Script -->
-  <script>
-    function execCmd(command) {
-      document.execCommand(command, false, null);
-    }
-    function execCmdWithArg(command, arg) {
-      document.execCommand(command, false, arg);
-    }
-  </script>
+        <!-- Undo/Redo -->
+        <button class="btn btn-warning" id="undoBtn">Undo</button>
+        <button class="btn btn-warning" id="redoBtn">Redo</button>
+    </div>
+
+    <!-- Text area -->
+    <div id="textEditor" contenteditable="true">
+        Type something here...
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Formatting
+        document.getElementById("boldBtn").addEventListener("click", () => {
+            document.execCommand("bold");
+        });
+
+        document.getElementById("underlineBtn").addEventListener("click", () => {
+            document.execCommand("underline");
+        });
+
+        document.getElementById("italicBtn").addEventListener("click", () => {
+            document.execCommand("italic");
+        });
+
+        document.getElementById("colorPicker").addEventListener("input", function() {
+            document.execCommand("foreColor", false, this.value);
+        });
+
+        // Alignment
+        document.getElementById("alignLeft").addEventListener("click", () => {
+            document.execCommand("justifyLeft");
+        });
+
+        document.getElementById("alignCenter").addEventListener("click", () => {
+            document.execCommand("justifyCenter");
+        });
+
+        document.getElementById("alignRight").addEventListener("click", () => {
+            document.execCommand("justifyRight");
+        });
+
+        document.getElementById("alignJustify").addEventListener("click", () => {
+            document.execCommand("justifyFull");
+        });
+
+        // Undo / Redo
+        document.getElementById("undoBtn").addEventListener("click", () => {
+            document.execCommand("undo");
+        });
+
+        document.getElementById("redoBtn").addEventListener("click", () => {
+            document.execCommand("redo");
+        });
+    </script>
 
 </body>
 </html>
