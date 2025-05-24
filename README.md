@@ -1,7 +1,7 @@
-# text-editor-application
-name:W.H.M.A.Premasiri
+# Text-editor-application
+Name:W.H.M.A.Premasiri
 
-student number: 2023to1892
+Student number: 2023to1892
 
 A web-based text editor application with advanced formatting features including bold, italic, underline, font color, text alignment, and undo/redo functionality.
 
