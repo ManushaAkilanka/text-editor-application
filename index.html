@@ -18,6 +18,13 @@
       align-items: center;
       gap: 10px;
     }
+ .toolbar {
+      background-color: #2d2f33;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
     .toolbar button {
       background: none;
       border: none;
@@ -34,12 +41,12 @@
       background: none;
       padding: 0;
     }
-    #textEditor {
+ #textEditor {
       width: 90%;
       height: 70vh;
       margin: 20px auto;
       padding: 15px;
-      background: #FFFFFF;
+      background: white;
       border-radius: 5px;
       border: 1px solid #ccc;
       overflow-y: auto;
@@ -68,7 +75,7 @@
   </div>
 
   <!-- Script -->
-  <script>
+ <script>
     function execCmd(command) {
       document.execCommand(command, false, null);
     }
