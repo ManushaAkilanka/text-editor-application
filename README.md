@@ -13,4 +13,4 @@ A web-based text editor application with advanced formatting features including 
 - Keyboard shortcuts support
 
 # Live demo
-
+https://manushaakilanka.github.io/text-editor-application/
